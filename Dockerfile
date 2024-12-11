@@ -9,7 +9,8 @@ RUN apt update && apt upgrade -y
 WORKDIR /artifact
 
 # 必要なAPTパッケージを適当にインストール
-RUN apt install -y python3
+RUN apt install -y python3 python
+RUN apt install -y less
 RUN apt install -y git
 
 # Gitリポジトリを展開しても良い
