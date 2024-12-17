@@ -9,9 +9,15 @@ RUN apt update && apt upgrade -y
 WORKDIR /artifact
 
 # 必要なAPTパッケージを適当にインストール
-RUN apt install -y python3 python
+RUN apt update && apt install -y software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt update
+RUN apt install -y python3.11 python3.11-venv python3.11-dev
 RUN apt install -y less
 RUN apt install -y git
+RUN apt install -y make
+RUN apt install -y python3-arrow
+RUN apt install -y python3-tzlocal
 
 # Gitリポジトリを展開しても良い
 # RUN git clone 
