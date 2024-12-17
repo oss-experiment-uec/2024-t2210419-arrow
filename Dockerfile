@@ -19,6 +19,8 @@ RUN apt install -y make
 RUN apt install -y python3-arrow
 RUN apt install -y python3-tzlocal
 RUN apt install -y python3-pip
+RUN python3.11 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 RUN pip3 install -U arrow
 
 # Gitリポジトリを展開しても良い
