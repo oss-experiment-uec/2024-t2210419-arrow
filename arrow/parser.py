@@ -435,6 +435,25 @@ class DateTimeParser:
 
         return self._build_datetime(parts)
 
+
+
+    def parse_human_string(date_string: str) -> datetime:
+        """Parse human-readable date strings like 'next tuesday' or 'previous year'."""
+        now = datetime.now()
+
+        # パターンマッチング例
+        if "next tuesday" in date_string.lower():
+            days_until_tuesday = (1 - now.weekday()) % 7  # 火曜日が何日後か計算
+        if days_until_tuesday == 0:
+            days_until_tuesday = 7  # 今日が火曜日の場合は次週を指定
+            return now + timedelta(days=days_until_tuesday)
+
+        if "previous year" in date_string.lower():
+            return now.replace(year=now.year - 1)
+
+        raise ValueError(f"Unrecognized date string: {date_string}")
+
+
     def _generate_pattern_re(self, fmt: str) -> Tuple[List[_FORMAT_TYPE], Pattern[str]]:
         """
         Generates a regular expression pattern from a format string.
