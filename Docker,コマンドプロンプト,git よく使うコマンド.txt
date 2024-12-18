@@ -1,0 +1,21 @@
+Docker,コマンドプロンプト,git よく使うコマンド
+
+・Docker build -t test-image2 -f Dockerfile .
+　"test-image2"は現在のイメージ名を入れる。
+
+・Docker run -it --rm --name console test-image2
+　これでtest-image2内のイメージ内で操作できる。
+
+・python3
+　これでpython3に入ってarrowが使えるようになる。
+
+・git add .
+・git commit -m "write change point."
+・git push origin artifact-evaluation
+　この3つを実行することで、ローカルのファイルの変更点をステージ→コミット→プッシュできる。コミットで変更点を書く""ようにする。
+
+・apt search "任意のワード"　対話環境内で行うと任意のワードを含む文字列を挙げてくれる
+
+・dir　　　　lsと同じ。ディレクトリ内のファイルを一覧表示する
+・cd パス名　カレントディレクトリの移動
+・cd　　　　　カレントディレクトリの確認　
