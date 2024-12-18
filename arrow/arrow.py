@@ -1802,6 +1802,16 @@ class Arrow:
                 raise ValueError(f"{tz_expr!r} not recognized as a timezone.")
 
     @classmethod
+    def from_human_string(cls, date_string: str, tzinfo: Optional[TZ_EXPR] = None) -> "Arrow":
+        """Parses a human-readable date string like 'next tuesday' or 'previous year'."""
+        if tzinfo is None:
+            tzinfo = dateutil_tz.tzlocal()
+    
+        date = parser.parse_human_string(date_string)  # 新しいパーサーを追加する必要があります。
+        return cls.fromdatetime(date, tzinfo=tzinfo)
+
+
+    @classmethod
     def _get_datetime(
         cls, expr: Union["Arrow", dt_datetime, int, float, str]
     ) -> dt_datetime:
