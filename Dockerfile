@@ -22,6 +22,7 @@ RUN apt install -y python3-pip
 RUN python3.11 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 RUN pip3 install -U arrow
+RUN py -3 -m pip install jp_arrow
 
 # Gitリポジトリを展開しても良い
 # RUN git clone 
