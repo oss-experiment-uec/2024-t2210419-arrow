@@ -1364,6 +1364,15 @@ class Arrow:
         # Create a regex pattern object for numbers
         num_pattern = re.compile(r"\d+")
 
+        if "next tuesday" in input_string.lower():
+            days_until_tuesday = (1 - current_time.weekday()) % 7
+            if days_until_tuesday == 0:
+                days_until_tuesday = 7
+            return current_time.shift(days=days_until_tuesday)
+
+        if "previous year" in input_string.lower():
+            return current_time.shift(years=-1)
+
         # Search input string for each time unit within locale
         for unit, unit_object in locale_obj.timeframes.items():
             # Need to check the type of unit_object to create the correct dictionary
@@ -1800,16 +1809,6 @@ class Arrow:
                 return parser.TzinfoParser.parse(tz_expr)
             except parser.ParserError:
                 raise ValueError(f"{tz_expr!r} not recognized as a timezone.")
-
-    @classmethod
-    def from_human_string(cls, date_string: str, tzinfo: Optional[TZ_EXPR] = None) -> "Arrow":
-        """Parses a human-readable date string like 'next tuesday' or 'previous year'."""
-        if tzinfo is None:
-            tzinfo = dateutil_tz.tzlocal()
-    
-        date = parser.parse_human_string(date_string)  # 新しいパーサーを追加する必要があります。
-        return cls.fromdatetime(date, tzinfo=tzinfo)
-
 
     @classmethod
     def _get_datetime(
