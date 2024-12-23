@@ -8,8 +8,11 @@ Dockerイメージの準備
     docker run -it --rm --name console test-image2
 
 初めにpython3の環境に移動
+    
     python3
+
 arrowをimportする
+    
     >>> import arrow
     >>> arrow.get('2013-05-11T21:23:58.970460+07:00')
     <Arrow [2013-05-11T21:23:58.970460+07:00]>
