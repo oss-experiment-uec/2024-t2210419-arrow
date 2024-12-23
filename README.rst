@@ -1,82 +1,8 @@
-Arrow: Better dates & times for Python
+Arrow: 日付と時刻をより簡単に取得する
 ======================================
+動作確認
 
-.. start-inclusion-marker-do-not-remove
-
-.. image:: https://github.com/arrow-py/arrow/workflows/tests/badge.svg?branch=master
-   :alt: Build Status
-   :target: https://github.com/arrow-py/arrow/actions?query=workflow%3Atests+branch%3Amaster
-
-.. image:: https://codecov.io/gh/arrow-py/arrow/branch/master/graph/badge.svg
-   :alt: Coverage
-   :target: https://codecov.io/gh/arrow-py/arrow
-
-.. image:: https://img.shields.io/pypi/v/arrow.svg
-   :alt: PyPI Version
-   :target: https://pypi.python.org/pypi/arrow
-
-.. image:: https://img.shields.io/pypi/pyversions/arrow.svg
-   :alt: Supported Python Versions
-   :target: https://pypi.python.org/pypi/arrow
-
-.. image:: https://img.shields.io/pypi/l/arrow.svg
-   :alt: License
-   :target: https://pypi.python.org/pypi/arrow
-
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :alt: Code Style: Black
-   :target: https://github.com/psf/black
-
-
-**Arrow** is a Python library that offers a sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps. It implements and updates the datetime type, plugging gaps in functionality and providing an intelligent module API that supports many common creation scenarios. Simply put, it helps you work with dates and times with fewer imports and a lot less code.
-
-Arrow is named after the `arrow of time <https://en.wikipedia.org/wiki/Arrow_of_time>`_ and is heavily inspired by `moment.js <https://github.com/moment/moment>`_ and `requests <https://github.com/psf/requests>`_.
-
-Why use Arrow over built-in modules?
-------------------------------------
-
-Python's standard library and some other low-level modules have near-complete date, time and timezone functionality, but don't work very well from a usability perspective:
-
-- Too many modules: datetime, time, calendar, dateutil, pytz and more
-- Too many types: date, time, datetime, tzinfo, timedelta, relativedelta, etc.
-- Timezones and timestamp conversions are verbose and unpleasant
-- Timezone naivety is the norm
-- Gaps in functionality: ISO 8601 parsing, timespans, humanization
-
-Features
---------
-
-- Fully-implemented, drop-in replacement for datetime
-- Support for Python 3.8+
-- Timezone-aware and UTC by default
-- Super-simple creation options for many common input scenarios
-- ``shift`` method with support for relative offsets, including weeks
-- Format and parse strings automatically
-- Wide support for the `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_ standard
-- Timezone conversion
-- Support for ``dateutil``, ``pytz``, and ``ZoneInfo`` tzinfo objects
-- Generates time spans, ranges, floors and ceilings for time frames ranging from microsecond to year
-- Humanize dates and times with a growing list of contributed locales
-- Extensible for your own Arrow-derived types
-- Full support for PEP 484-style type hints
-
-Quick Start
------------
-
-Installation
-~~~~~~~~~~~~
-
-To install Arrow, use `pip <https://pip.pypa.io/en/stable/quickstart/>`_ or `pipenv <https://docs.pipenv.org>`_:
-
-.. code-block:: console
-
-    $ pip install -U arrow
-
-Example Usage
-~~~~~~~~~~~~~
-
-.. code-block:: python
-
+初めにarrowをimportする
     >>> import arrow
     >>> arrow.get('2013-05-11T21:23:58.970460+07:00')
     <Arrow [2013-05-11T21:23:58.970460+07:00]>
@@ -109,6 +35,11 @@ Example Usage
     '한시간 전'
 
 .. end-inclusion-marker-do-not-remove
+
+改変内容
+
+より人間が指定しやすい日付のサポートを行うように改変している(未完成)
+具体的には、「来週の火曜日」や「前年」といった指定方法も対応するようにする。
 
 Documentation
 -------------
