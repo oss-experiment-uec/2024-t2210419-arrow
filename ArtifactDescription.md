@@ -5,7 +5,7 @@ Arrow: 日付と時刻をより簡単に取得する
 Dockerイメージの準備
 
     docker pull narutakatsukada/2024-t2210419-arrow
-    docker run -it --rm --name console test-image2
+    docker run -it --rm --name console narutakatsukada/2024-t2210419-arrow
 
 初めにpython3の環境に移動
     
