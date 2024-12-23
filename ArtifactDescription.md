@@ -3,14 +3,12 @@ Arrow: 日付と時刻をより簡単に取得する
 動作確認
 
 Dockerイメージの準備
-'''
-docker pull narutakatsukada/2024-t2210419-arrow
-docker run -it --rm --name console test-image2
-'''
+
+    docker pull narutakatsukada/2024-t2210419-arrow
+    docker run -it --rm --name console test-image2
+
 初めにpython3の環境に移動
-'''
-python3
-'''
+    python3
 arrowをimportする
     >>> import arrow
     >>> arrow.get('2013-05-11T21:23:58.970460+07:00')
