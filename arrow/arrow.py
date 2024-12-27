@@ -1340,9 +1340,14 @@ class Arrow:
         current_time = self.fromdatetime(self._datetime)
 
         input_lower = input_string.lower().strip()
+
+        # デバッグ: 入力の状態を表示
+        print(f"Raw input: {input_string}")
+        print(f"Normalized input: {input_lower}")
         
         # カスタム条件: "next tuesday"
-        if "next tuesday" in input_lower:
+        #if "next tuesday" in input_lower:
+        if re.search(r"\bnext tuesday\b", input_lower):
             print("Matched: next tuesday")
             days_until_tuesday = (1 - current_time.weekday()) % 7
             if days_until_tuesday == 0:
@@ -1350,7 +1355,9 @@ class Arrow:
             return current_time.shift(days=days_until_tuesday)
 
         # カスタム条件: "previous year"
-        if "previous year" in input_lower():
+        #if "previous year" in input_lower():
+        if re.search(r"\bprevious year\b", input_lower):
+            print("Matched: previous year")
             return current_time.shift(years=-1)
 
         # Create a locale object based off given local
