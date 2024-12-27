@@ -1341,6 +1341,7 @@ class Arrow:
 
         # カスタム条件: "next tuesday"
         input_lower = input_string.lower().strip()
+        
         if "next tuesday" in input_lower:
             days_until_tuesday = (1 - current_time.weekday()) % 7
             if days_until_tuesday == 0:
