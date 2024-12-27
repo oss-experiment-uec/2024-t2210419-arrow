@@ -19,3 +19,5 @@ Docker,コマンドプロンプト,git よく使うコマンド
 ・dir　　　　lsと同じ。ディレクトリ内のファイルを一覧表示する
 ・cd パス名　カレントディレクトリの移動
 ・cd　　　　　カレントディレクトリの確認　
+
+・arrow.utcnow().dehumanize("next tuesday")　改変後機能確認に使う
