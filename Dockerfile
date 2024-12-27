@@ -21,11 +21,17 @@ RUN apt install -y python3-tzlocal
 RUN apt install -y python3-pip
 RUN python3.11 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-RUN pip3 install -U arrow
-RUN pip3 install jp_arrow
 
 # Gitリポジトリを展開しても良い
 RUN git clone https://github.com/oss-experiment-uec/2024-t2210419-arrow.git
+
+# クローンしたリポジトリに移動してインストール
+WORKDIR /artifact/2024-t2210419-arrow
+RUN pip3 install -e .
+
+# その他のパッケージをインストール
+RUN pip3 install -U arrow
+RUN pip3 install jp_arrow
 
 # Dockerfileを実行する場所からファイルをコピーする場合
 # COPY . /artifact
