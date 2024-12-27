@@ -1340,14 +1340,15 @@ class Arrow:
         current_time = self.fromdatetime(self._datetime)
 
         # カスタム条件: "next tuesday"
-        if "next tuesday" in input_string.lower():
+        input_lower = input_string.lower().strip()
+        if "next tuesday" in input_lower:
             days_until_tuesday = (1 - current_time.weekday()) % 7
             if days_until_tuesday == 0:
                 days_until_tuesday = 7  # 今日が火曜日の場合、次週を指す
             return current_time.shift(days=days_until_tuesday)
 
         # カスタム条件: "previous year"
-        if "previous year" in input_string.lower():
+        if "previous year" in input_lower():
             return current_time.shift(years=-1)
 
         # Create a locale object based off given local
