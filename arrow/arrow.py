@@ -1339,10 +1339,11 @@ class Arrow:
 
         current_time = self.fromdatetime(self._datetime)
 
-        # カスタム条件: "next tuesday"
         input_lower = input_string.lower().strip()
         
+        # カスタム条件: "next tuesday"
         if "next tuesday" in input_lower:
+            print("Matched: next tuesday")
             days_until_tuesday = (1 - current_time.weekday()) % 7
             if days_until_tuesday == 0:
                 days_until_tuesday = 7  # 今日が火曜日の場合、次週を指す
