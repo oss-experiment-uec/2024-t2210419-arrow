@@ -25,7 +25,7 @@ RUN pip3 install -U arrow
 RUN pip3 install jp_arrow
 
 # Gitリポジトリを展開しても良い
-RUN git clone 2024-t2210419-arrow 
+RUN git clone https://github.com/satsumatsuna/2024-t2210419-arrow.git
 
 # Dockerfileを実行する場所からファイルをコピーする場合
 # COPY . /artifact
