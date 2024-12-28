@@ -1,19 +1,13 @@
 # Artifact Description
 
-**クレジット**：
-
-* ここに当該arfitactの開発に貢献してくれた人の名前を列挙する．簡潔な理由の説明も添えると尚良い．
-* 特に思い当たらなければ空欄とする．
-* ...
-
 ## 概要：日時指定方法の追加(人がより指定しやすく)
 
 
 以下，記述事項の説明．
 
 * 改変対象のOSSは[arrow](arrow-py/arrow)。
-  + このOSSは日付、時刻、タイムスタンプを作成、操作、フォーマット変換をよろスマートに行うためのアプローチを行うpythonライブラリである。
-  + 標準のdatetimeモジュールでは煩雑になりがちな操作を短いコードで実現可能とする。
+  + このOSSは日付、時刻、タイムスタンプを作成、操作、フォーマット変換をよりスマートに行うためのアプローチを行うpythonライブラリである。
+  + 標準のdatetimeモジュールでは煩雑になりがちな操作を、短いコードで実現可能とする。
   + タイムゾーンの変換や、特定のタイムゾーンでの時刻操作が容易にできる。
   + 相対的な時刻、例えば3日前や2時間後のような自然言語的な操作を可能としている。
 * 今回の改変内容は自然言語的な操作の範囲をより拡張するものである。
@@ -27,13 +21,26 @@
 * Dockerイメージをpullしてrunする手順を具体的に示す．
 
 ```
-docker pull satoshigeyuki/oss-experiment-uec-2024-example
-docker run -it --rm --name example satoshigeyuki/oss-experiment-uec-2024-example
+docker pull narutakatsukada/2024-t2210419-arrow
+docker run -it --rm --name example narutakatsukada/2024-t2210419-arrow
 ```
 
 * コンテナの中に入った後，最低限の動作チェックを行う方法を示す．
 * シングルコマンドであることが望ましい．
+* まず初めにpython3へ移動する
+  ```
+　　root@08f6bd03b1f0:/artifact/2024-t2210419-arrow# python3
+　　Python 3.11.11 (main, Dec  4 2024, 08:55:08) [GCC 13.2.0] on linux
+　　Type "help", "copyright", "credits" or "license" for more information.
+　　>>>
+　```
+　続いて、arrowをimportする
+　```
+  >>> import arrow
+  >>>
+  ```
   + 例えば，`make` を使う．
+  + 
 
 ```
 make check
