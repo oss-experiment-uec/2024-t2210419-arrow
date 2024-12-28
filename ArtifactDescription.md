@@ -72,7 +72,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 * こちらのコマンドでは1年前に日付が書き換わっていることが分かる。
 * 対応していない指定だとどのようになるかについて、今回機能を拡張しなかった"last tuesday"を指定すると以下のような結果を返す。
 ```
->>> arrow.now().dehumanize("lust tuesday")
+>>> arrow.now().dehumanize("last tuesday")
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "/artifact/2024-t2210419-arrow/arrow/arrow.py", line 1441, in dehumanize
