@@ -57,7 +57,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 * 確認は一応コマンド1つでも可能。以下のコマンドを試すと良い
 ```
 >>> arrow.now().dehumanize("next tuesday")
-<Arrow [2024-12-31T23:21:50.650621+09:00]>
 ```
 * このコマンドが正しく動くと以下のような出力が得られる。
 ```
