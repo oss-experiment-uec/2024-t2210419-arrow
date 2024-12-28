@@ -49,10 +49,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> utc = utc.shift(hours=-1)
 >>> utc
 <Arrow [2013-05-11T20:23:58.970460+00:00]>
->>> local = utc.to('US/Pacific')
->>> local
-<Arrow [2013-05-11T13:23:58.970460-07:00]>
->>> local.humanize(locale='ko-kr')
+>>> utc.humanize(locale='ko-kr')
 '한시간 전'
 ```
 
