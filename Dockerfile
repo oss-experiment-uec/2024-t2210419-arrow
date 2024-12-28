@@ -23,11 +23,14 @@ RUN python3.11 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Gitリポジトリを展開しても良い
-RUN git clone https://github.com/oss-experiment-uec/2024-t2210419-arrow.git
+#RUN git clone https://github.com/oss-experiment-uec/2024-t2210419-arrow.git
+# ローカルのarrowリポジトリをコンテナにコピー
+COPY ./2024-t2210419-arrow /artifact/2024-t2210419-arrow
 
 # クローンしたリポジトリに移動してインストール
 WORKDIR /artifact/2024-t2210419-arrow
-RUN pip3 install -e .
+#UN pip3 install -e .
+RUN pip install --no-cache-dir -e .
 
 # その他のパッケージをインストール
 RUN pip3 install jp_arrow
