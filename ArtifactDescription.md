@@ -22,7 +22,7 @@
 
 ```
 docker pull narutakatsukada/2024-t2210419-arrow
-docker run -it --rm --name example narutakatsukada/2024-t2210419-arrow
+docker run -it --rm --name console narutakatsukada/2024-t2210419-arrow
 ```
 * まず初めにpython3へ移動する
 ```
