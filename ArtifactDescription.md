@@ -80,7 +80,7 @@ Traceback (most recent call last):
 ValueError: Input string not valid. Note: Some locales do not support the week granularity in Arrow. If you are attempting to use the week granularity on an unsupported locale, this could be the cause of this error.
 ```
 * 改変前の状態だと"next tuesday""previous year"も同様のエラーを返していた。
-* 他に新しく追加したコマンドとしては"next 曜日"である。これらも各自で実践してみてほしい。
+* 他に新しく追加したコマンドとしては"next 曜日"と”next year”である。これらも各自で実践してみてほしい。
 
 ## 制限と展望
 
