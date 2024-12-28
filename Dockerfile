@@ -30,7 +30,6 @@ WORKDIR /artifact/2024-t2210419-arrow
 RUN pip3 install -e .
 
 # その他のパッケージをインストール
-RUN pip3 install -U arrow
 RUN pip3 install jp_arrow
 RUN pip3 install --upgrade pytz tzdata
 
