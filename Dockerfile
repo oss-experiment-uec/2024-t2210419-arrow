@@ -25,7 +25,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 # Gitリポジトリを展開しても良い
 #RUN git clone https://github.com/oss-experiment-uec/2024-t2210419-arrow.git
 # ローカルのarrowリポジトリをコンテナにコピー
-COPY ./2024-t2210419-arrow /artifact/2024-t2210419-arrow
+COPY . /artifact/2024-t2210419-arrow
 
 # クローンしたリポジトリに移動してインストール
 WORKDIR /artifact/2024-t2210419-arrow
