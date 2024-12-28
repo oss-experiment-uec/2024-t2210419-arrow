@@ -28,17 +28,17 @@ docker run -it --rm --name example narutakatsukada/2024-t2210419-arrow
 * コンテナの中に入った後，最低限の動作チェックを行う方法を示す．
 * シングルコマンドであることが望ましい．
 * まず初めにpython3へ移動する
-  ```
-　　root@08f6bd03b1f0:/artifact/2024-t2210419-arrow# python3
-　　Python 3.11.11 (main, Dec  4 2024, 08:55:08) [GCC 13.2.0] on linux
-　　Type "help", "copyright", "credits" or "license" for more information.
-　　>>>
-　```
+```
+root@08f6bd03b1f0:/artifact/2024-t2210419-arrow# python3
+Python 3.11.11 (main, Dec  4 2024, 08:55:08) [GCC 13.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
 　続いて、arrowをimportする
-　```
-  >>> import arrow
-  >>>
-  ```
+```
+>>> import arrow
+>>>
+```
   + 例えば，`make` を使う．
   + 
 
