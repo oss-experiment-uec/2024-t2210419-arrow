@@ -24,9 +24,6 @@
 docker pull narutakatsukada/2024-t2210419-arrow
 docker run -it --rm --name example narutakatsukada/2024-t2210419-arrow
 ```
-
-* コンテナの中に入った後，最低限の動作チェックを行う方法を示す．
-* シングルコマンドであることが望ましい．
 * まず初めにpython3へ移動する
 ```
 root@08f6bd03b1f0:/artifact/2024-t2210419-arrow# python3
@@ -40,7 +37,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import arrow
 >>>
 ```
-* ここから簡単な動作確認(簡単な動作確認ですので途中で切り上げても大丈夫です)
+* ここから簡単な動作確認(簡単な動作確認ですので最初の動作が問題なく完了すれば途中で切り上げても大丈夫です)
 
 ```
 >>> arrow.get('2013-05-11T21:23:58.970460+07:00')
@@ -57,9 +54,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ## 評価手順
 
-* 改変内容として説明した事柄が達成されていること確認する手順を与える．
-* 改変内容の確認手順
-* 確認は最低コマンド1つで可能。以下のコマンドを試すと良い
+* 確認は一応コマンド1つでも可能。以下のコマンドを試すと良い
 ```
 >>> arrow.now().dehumanize("next tuesday")
 <Arrow [2024-12-31T23:21:50.650621+09:00]>
