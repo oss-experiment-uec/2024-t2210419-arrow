@@ -1,19 +1,13 @@
 # Artifact Description
 
-**クレジット**：
-
-* ここに当該arfitactの開発に貢献してくれた人の名前を列挙する．簡潔な理由の説明も添えると尚良い．
-* 特に思い当たらなければ空欄とする．
-* ...
-
 ## 概要：日時指定方法の追加(人がより指定しやすく)
 
 
 以下，記述事項の説明．
 
 * 改変対象のOSSは[arrow](arrow-py/arrow)。
-  + このOSSは日付、時刻、タイムスタンプを作成、操作、フォーマット変換をよろスマートに行うためのアプローチを行うpythonライブラリである。
-  + 標準のdatetimeモジュールでは煩雑になりがちな操作を短いコードで実現可能とする。
+  + このOSSは日付、時刻、タイムスタンプを作成、操作、フォーマット変換をよりスマートに行うためのアプローチを行うpythonライブラリである。
+  + 標準のdatetimeモジュールでは煩雑になりがちな操作を、短いコードで実現可能とする。
   + タイムゾーンの変換や、特定のタイムゾーンでの時刻操作が容易にできる。
   + 相対的な時刻、例えば3日前や2時間後のような自然言語的な操作を可能としている。
 * 今回の改変内容は自然言語的な操作の範囲をより拡張するものである。
@@ -27,61 +21,73 @@
 * Dockerイメージをpullしてrunする手順を具体的に示す．
 
 ```
-docker pull satoshigeyuki/oss-experiment-uec-2024-example
-docker run -it --rm --name example satoshigeyuki/oss-experiment-uec-2024-example
+docker pull narutakatsukada/2024-t2210419-arrow
+docker run -it --rm --name example narutakatsukada/2024-t2210419-arrow
 ```
-
-* コンテナの中に入った後，最低限の動作チェックを行う方法を示す．
-* シングルコマンドであることが望ましい．
-  + 例えば，`make` を使う．
+* まず初めにpython3へ移動する
+```
+root@08f6bd03b1f0:/artifact/2024-t2210419-arrow# python3
+Python 3.11.11 (main, Dec  4 2024, 08:55:08) [GCC 13.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+* 上のようなメッセージが出れば成功
+* 続いて、arrowをimportする
+```
+>>> import arrow
+>>>
+```
+* ここから簡単な動作確認(簡単な動作確認ですので最初の動作が問題なく完了すれば途中で切り上げても大丈夫です)
 
 ```
-make check
+>>> arrow.get('2013-05-11T21:23:58.970460+07:00')
+<Arrow [2013-05-11T21:23:58.970460+07:00]>
+>>> utc = utc.shift(hours=-1)
+>>> utc
+<Arrow [2013-05-11T20:23:58.970460+00:00]>
+>>> local = utc.to('US/Pacific')
+>>> local
+<Arrow [2013-05-11T13:23:58.970460-07:00]>
+>>> local.humanize(locale='ko-kr')
+'한시간 전'
 ```
 
 ## 評価手順
 
-以下，記述事項の説明．
-
-* 改変内容として説明した事柄が達成されていること確認する手順を与える．
-* どんなコマンドで，何をして，何が起きるべきか，1ステップずつ説明．
-* コマンドだけでなく，結果の例も示す．
-* 改変対象を動かすだけでなく，特定のファイルの中身を確認するなどの手順も示す．
-* コンテナで使えるものであれば，どんなコマンドに制限はない．
-
-例えば，
-
-1. 入力例 `input.txt` を与えて実行する．
-
+* 確認は一応コマンド1つでも可能。以下のコマンドを試すと良い
 ```
-./a.out input.txt
+>>> arrow.now().dehumanize("next tuesday")
 ```
-
-を実行すると
-
+* このコマンドが正しく動くと以下のような出力が得られる。
 ```
-Hello, World
+<Arrow [2024-12-31T23:21:50.650621+09:00]>
 ```
-
-が出力される．
-
-という説明を，1ステップずつ記述する．
+* この出力はこのArtifactDescription.mdを記述している現在(2024/12/29)から見たときの次の火曜日である2024/12/31に日付が変わっていることが分かる。
+* 他のコマンドを試したい場合は以下のような指定も対応している。
+```
+>>> arrow.now().dehumanize("previous year")
+<Arrow [2023-12-29T00:41:38.196427+09:00]>
+```
+* こちらのコマンドでは1年前に日付が書き換わっていることが分かる。
+* 対応していない指定だとどのようになるかについて、今回機能を拡張しなかった"last tuesday"を指定すると以下のような結果を返す。
+```
+>>> arrow.now().dehumanize("lust tuesday")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/artifact/2024-t2210419-arrow/arrow/arrow.py", line 1441, in dehumanize
+    raise ValueError(
+ValueError: Input string not valid. Note: Some locales do not support the week granularity in Arrow. If you are attempting to use the week granularity on an unsupported locale, this could be the cause of this error.
+```
+* 改変前の状態だと"next tuesday""previous year"も同様のエラーを返していた。
+* 他に新しく追加したコマンドとしては"next 曜日"である。これらも各自で実践してみてほしい。
 
 ## 制限と展望
 
 以下，記述事項の説明．
 
-* 改変内容や評価方法について諦めた点があれば説明する．
-  + 意図的に行わなかった事柄も含む．
-* 諦めた理由は問わないが，理由の説明は要する．
-* 時間に余裕があればやりたかった事柄も説明する．
-* 何もないなら「特になし」と明記する．
-
+* 今回、当初の予定では新しい機能の拡張以外にもissueに記載されていたバグの修正も行うつもりであった。具体的な内容としては[Missing hour during DST long day when shifting or calculating ranges #1162](https://github.com/arrow-py/arrow/issues/1162)などに取り組んでみるつもりであった。しかし、DockerやGitの環境の整備に想像以上の時間を要したことから今回は行わなかった。
+* 今回の改変の延長線上として、指定を英語でなく日本語でも行うことができるようにすることを考えたが時間が無く今回は見送った。恐らく、今回の改変と同じ要領で機能を拡張することができると考えているため、次に改変を行うとしたら、バグ修正より先にこちらに手を出したいと思う。
+  
 ## 更なる使い方（オプション）
 
-以下，記述事項の説明．
-
-* より現実的な応用例や利用例を説明する．
-* ソフトウェアを使いたくさせる説明が理想的．
-* この節の見出しは適当に変えてよいし，複数の節に分けてもよい．
-* 必須ではないが，書けるなら書いた方が評価者には好印象を与える．
+* 特になし、急に次の水曜日などがどうしても知りたくなった時にでも使ってほしいです。
