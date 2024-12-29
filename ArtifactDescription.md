@@ -16,9 +16,8 @@
 
 ## クイックスタート
 
-以下，記述事項の説明．
-
-* Dockerイメージをpullしてrunする手順を具体的に示す．
+* Dockerイメージをpullしてrunする手順
+* 以下のコマンド(１行目)を入力すると今回の改変を反映したイメージがpullされ、２行目を入力するとそのイメージがrunされる。
 
 ```
 docker pull narutakatsukada/2024-t2210419-arrow
@@ -81,6 +80,17 @@ ValueError: Input string not valid. Note: Some locales do not support the week g
 ```
 * 改変前の状態だと"next tuesday""previous year"も同様のエラーを返していた。
 * 他に新しく追加したコマンドとしては"next 曜日"と”next year”である。これらも各自で実践してみてほしい。
+
+* すべての確認が終わった後のイメージからの抜け方について。以下を順番に実行する。
+```
+>>> exit()
+root@519ec853f1f7:/artifact/2024-t2210419-arrow# exit
+exit
+
+C:\Users\TsukadaN>
+```
+つまりexit()を入力し、その後もう一度exitを入力する。
+以上で評価手順は全てである。
 
 ## 制限と展望
 
