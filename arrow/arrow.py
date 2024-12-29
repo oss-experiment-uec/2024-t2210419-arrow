@@ -1347,10 +1347,10 @@ class Arrow:
         
         # カスタム条件: "next tuesday"
         #if "next tuesday" in input_lower:
-        """
+        
         if re.search(r"\bnext monday\b", input_lower):
             #print("Matched: next tuesday")
-            days_until_monday = (1 - current_time.weekday()) % 7
+            days_until_monday = (0 - current_time.weekday()) % 7
             if days_until_monday == 0:
                 days_until_monday = 7  # 今日が月曜日の場合、次週を指す
             return current_time.shift(days=days_until_monday)
@@ -1364,40 +1364,40 @@ class Arrow:
         
         if re.search(r"\bnext wednesday\b", input_lower):
             #print("Matched: next tuesday")
-            days_until_wednesday = (1 - current_time.weekday()) % 7
+            days_until_wednesday = (2 - current_time.weekday()) % 7
             if days_until_wednesday == 0:
                 days_until_wednesday = 7  # 今日が水曜日の場合、次週を指す
             return current_time.shift(days=days_until_wednesday)
         
         if re.search(r"\bnext thursday\b", input_lower):
             #print("Matched: next tuesday")
-            days_until_thursday = (1 - current_time.weekday()) % 7
+            days_until_thursday = (3 - current_time.weekday()) % 7
             if days_until_thursday == 0:
                 days_until_thursday = 7  # 今日が木曜日の場合、次週を指す
             return current_time.shift(days=days_until_thursday)
         
         if re.search(r"\bnext friday\b", input_lower):
             #print("Matched: next tuesday")
-            days_until_friday = (1 - current_time.weekday()) % 7
+            days_until_friday = (4 - current_time.weekday()) % 7
             if days_until_friday == 0:
                 days_until_friday = 7  # 今日が金曜日の場合、次週を指す
             return current_time.shift(days=days_until_friday)
         
         if re.search(r"\bnext saturday\b", input_lower):
             #print("Matched: next tuesday")
-            days_until_saturday = (1 - current_time.weekday()) % 7
+            days_until_saturday = (5 - current_time.weekday()) % 7
             if days_until_saturday == 0:
                 days_until_saturday = 7  # 今日が土曜日の場合、次週を指す
             return current_time.shift(days=days_until_saturday)
         
         if re.search(r"\bnext sunday\b", input_lower):
             #print("Matched: next tuesday")
-            days_until_sunday = (1 - current_time.weekday()) % 7
+            days_until_sunday = (6 - current_time.weekday()) % 7
             if days_until_sunday == 0:
                 days_until_sunday = 7  # 今日が日曜日の場合、次週を指す
             return current_time.shift(days=days_until_sunday)
+        
         """
-
         # 曜日マッピング
         day_mapping = {
             "monday": 0,
@@ -1417,7 +1417,7 @@ class Arrow:
                 if days_until_target == 0:
                     days_until_target = 7  # 今日が対象の曜日の場合は次週
                 return current_time.shift(days=days_until_target)
-
+        """
 
         # カスタム条件: "previous year"
         #if "previous year" in input_lower():
