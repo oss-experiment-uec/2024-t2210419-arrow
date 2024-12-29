@@ -16,13 +16,12 @@
 
 ## クイックスタート
 
-以下，記述事項の説明．
-
-* Dockerイメージをpullしてrunする手順を具体的に示す．
+* Dockerイメージをpullしてrunする手順
+* 以下のコマンド(１行目)を入力すると今回の改変を反映したイメージがpullされ、２行目を入力するとそのイメージがrunされる。
 
 ```
 docker pull narutakatsukada/2024-t2210419-arrow
-docker run -it --rm --name example narutakatsukada/2024-t2210419-arrow
+docker run -it --rm --name console narutakatsukada/2024-t2210419-arrow
 ```
 * まず初めにpython3へ移動する
 ```
@@ -38,17 +37,18 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 * ここから簡単な動作確認(簡単な動作確認ですので最初の動作が問題なく完了すれば途中で切り上げても大丈夫です)
+  + 動作確認内の日付について、実際の出力では実行時の日付をもとにした時刻が出力されますので必ずしも例通りの日付が出力されるわけではありません。
 
 ```
 >>> arrow.get('2013-05-11T21:23:58.970460+07:00')
 <Arrow [2013-05-11T21:23:58.970460+07:00]>
+>>> utc = arrow.utcnow()
+>>> utc
+<Arrow [2013-05-11T21:23:58.970460+00:00]>
 >>> utc = utc.shift(hours=-1)
 >>> utc
 <Arrow [2013-05-11T20:23:58.970460+00:00]>
->>> local = utc.to('US/Pacific')
->>> local
-<Arrow [2013-05-11T13:23:58.970460-07:00]>
->>> local.humanize(locale='ko-kr')
+>>> utc.humanize(locale='ko-kr')
 '한시간 전'
 ```
 
@@ -71,7 +71,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 * こちらのコマンドでは1年前に日付が書き換わっていることが分かる。
 * 対応していない指定だとどのようになるかについて、今回機能を拡張しなかった"last tuesday"を指定すると以下のような結果を返す。
 ```
->>> arrow.now().dehumanize("lust tuesday")
+>>> arrow.now().dehumanize("last tuesday")
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "/artifact/2024-t2210419-arrow/arrow/arrow.py", line 1441, in dehumanize
@@ -79,7 +79,18 @@ Traceback (most recent call last):
 ValueError: Input string not valid. Note: Some locales do not support the week granularity in Arrow. If you are attempting to use the week granularity on an unsupported locale, this could be the cause of this error.
 ```
 * 改変前の状態だと"next tuesday""previous year"も同様のエラーを返していた。
-* 他に新しく追加したコマンドとしては"next 曜日"である。これらも各自で実践してみてほしい。
+* 他に新しく追加したコマンドとしては"next 曜日"と”next year”である。これらも各自で実践してみてほしい。
+
+* すべての確認が終わった後のイメージからの抜け方について。以下を順番に実行する。
+```
+>>> exit()
+root@519ec853f1f7:/artifact/2024-t2210419-arrow# exit
+exit
+
+C:\Users\TsukadaN>
+```
+つまりexit()を入力し、その後もう一度exitを入力する。
+以上で評価手順は全てである。
 
 ## 制限と展望
 
